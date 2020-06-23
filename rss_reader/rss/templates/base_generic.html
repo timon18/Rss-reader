@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  
+  {% block title %}<title>RSS</title>{% endblock %}
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/static/my.css?6">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <!-- Добавление дополнительного статического CSS файла -->
+  {% load static %}
+  <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+
+    <script src="/static/js/autocomlete.js?5"></script>
+    
+</head>
+
+<body>
+
+
+  <nav class="nav-extended blue">
+
+    <div class="nav-wrapper container">
+
+    <div class="col s7"><a href="#" class="brand-logo right-align">RSS</a></div>
+    <div class="col s5">
+
+          <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+      <ul id="nav-mobile" class="right hide-on-med-and-down">
+        
+             {% if user.is_authenticated %}
+     {% comment %} <li>User: {{ user.get_username }}</li> {% endcomment %}
+     <li><a href="http://localhost:8000/rss">Лента</a></li>
+        <li><a href="http://localhost:8000/rss/saved/">Сохранённые</a></li>
+     <li><a href="{% url 'logout'%}?next={{request.path}}">Logout</a></li>   
+   {% else %}
+     <li><a href="{% url 'login'%}?next={{request.path}}">Login</a></li>   
+   {% endif %} 
+      </ul>
+
+
+      </div>
+      
+
+
+
+  </nav>
+  <ul class="sidenav" id="mobile-demo">
+  <li><a href="http://localhost:8000/rss">Лента</a></li>
+    <li><a href="http://localhost:8000/rss/saved/">Сохранённые</a></li>
+         {% if user.is_authenticated %}
+     {% comment %} <li>User: {{ user.get_username }}</li> {% endcomment %}
+     <li><a href="{% url 'logout'%}?next={{request.path}}">Logout</a></li>   
+   {% else %}
+     <li><a href="{% url 'login'%}?next={{request.path}}">Login</a></li>   
+   {% endif %} 
+  </ul>
+
+
+
+
+
+
+
+  <div class="container-fluid">
+
+    <div class="row">
+      <div class="col-sm-2">
+      {% block sidebar %}
+      <ul class="sidebar-nav">
+      </ul>
+     {% endblock %}
+      </div>
+      <div class="col-sm-10 ">
+      {% block content %}{% endblock %}
+      </div>
+    </div>
+
+  </div>
+
+
+
+
+
+  <script> 
+  $(document).ready(function(){
+    $('.sidenav').sidenav();
+  });
+        
+  </script>
+
+</body>
+</html>

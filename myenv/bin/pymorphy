@@ -1,0 +1,4 @@
+#!/home/timon/Рабочий стол/RSS_reader/myenv/bin/python3
+import sys
+from pymorphy2 import cli
+sys.exit(cli.main())

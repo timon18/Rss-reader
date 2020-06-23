@@ -1,0 +1,12 @@
+source myenv/bin/activate
+cd rss_reader/
+python3 manage.py runserver
+
+
+source myenv/bin/activate
+redis-server 
+
+
+source myenv/bin/activate
+cd rss_reader/
+celery -A rss_reader worker -B -l INFO 

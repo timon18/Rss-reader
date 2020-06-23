@@ -1,0 +1,76 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+
+
+
+
+
+
+
+
+
+<form class = "form-inline">
+  <div class="row">
+    <div class="col s12 ">
+      <div class="row">
+        <div class="input-field col s12 ">
+          <input type="text" autocomplete="off" id="autocomplete-input" class="autocomplete" name = "tag">
+          
+          <button type="submit" class="btn btn-primary mb-2 ">Найти</button>
+          
+        </div>
+      </div>
+    </div>
+
+  </div>
+</form>
+
+<br />
+{{article.id}}
+
+{% for article in articles%}
+            
+  <div class="container">
+    <div class="card hoverable">
+    
+      <div class="card white">
+        <div class="card-content black-text">
+          
+          <a class="card-title " href="{{ article.link }}">{{ article.title }}</a>
+          
+          <p>{{ article.summary |safe }}</p>
+        </div>
+        <div class="card-action">
+          <div class="chip  green ">
+              <a onclick="M.toast({html: 'Сохранено', classes: 'rounded'})" class="article-save" article-id={{article.id}}>Сохранить</a>
+              </div>
+          {% for tag in article.tags%}
+             <div class="chip  blue lighten-4">
+              <a href="http://localhost:8000/rss/?tag={{tag}}#">{{tag}}</a>
+              </div>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+{% endfor %}
+
+
+
+<br />
+
+
+
+
+ 
+
+ 
+
+
+
+
+{% endblock %}

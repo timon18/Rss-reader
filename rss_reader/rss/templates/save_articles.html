@@ -1,0 +1,32 @@
+{% extends "base_generic.html" %}
+{% block content %}
+<h1>Сохранённые статьи</h1>
+
+
+
+{% for article in articles%}
+            
+  <div class="container">
+    <div class="card hoverable">
+      <div class="card white">
+        <div class="card-content black-text">
+          
+          <a class="card-title " href="{{ article.link }}">{{ article.title }}</a>
+          
+          <p>{{ article.summary |safe }}</p>
+        </div>
+        <div class="card-action">
+        <div class="chip  red ">
+              <a onclick="M.toast({html: 'Удалено, classes: 'rounded''})" class="article-delete" article-id={{article.id}} href="http://localhost:8000/rss/saved/">Удалить</a>
+              </div>
+          {% for tag in article.tags%}
+             <div class="chip  blue lighten-4">
+              <a href="http://localhost:8000/rss/?tag={{tag}}#">{{tag}}</a>
+              </div>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+  </div> {% endfor %}
+
+  {% endblock %}

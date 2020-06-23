@@ -1,0 +1,23 @@
+div img{
+    max-width: 100%;
+    height: auto;
+}
+a.article-save:hover{
+    cursor: pointer !important;
+}
+
+a.article-delete:hover{
+    cursor: pointer !important;
+}
+
+.dropdown-content li>span{
+    color:black !important;
+}
+.autocomplete-content li .highlight{
+    color:#26a69a !important;
+}
+
+.card .card-action a:not(.btn):not(.btn-large):not(.btn-small):not(.btn-large):not(.btn-floating){
+    color: black !important;
+    margin-right: 0px !important;
+}
